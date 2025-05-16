@@ -1,0 +1,1 @@
+web: gunicorn apollo_university.wsgi:application 
