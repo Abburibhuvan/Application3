@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="left-section">
+        <div class="brand">
+            <div class="logo">
+                <img src="{% static 'images/apollologo.png' %}" alt="Apollo University Logo" class="logo-image">
+                <div class="logo-text">
+                    {% for letter in "Apollo University" %}
+                        <span class="letter">{{ letter }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-content">
+            <h1>Join Apollo University</h1>
+            <p>Create your account and start your journey with us today.</p>
+        </div>
+    </div>
+    
+    <div class="right-section">
+        <div class="login-container">
+            <h2>Create Account</h2>
+            
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            
+            <form method="POST" action="{% url 'register' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="{{ form.email.id_for_label }}" class="required-field">Email Address</label>
+                    <div class="input-container">
+                        <span class="input-icon">📧</span>
+                        {{ form.email }}
+                    </div>
+                    {% if form.email.errors %}
+                        <div class="errorlist">{{ form.email.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.first_name.id_for_label }}" class="required-field">First Name</label>
+                    <div class="input-container">
+                        <span class="input-icon">👤</span>
+                        {{ form.first_name }}
+                    </div>
+                    {% if form.first_name.errors %}
+                        <div class="errorlist">{{ form.first_name.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.last_name.id_for_label }}" class="required-field">Last Name</label>
+                    <div class="input-container">
+                        <span class="input-icon">👤</span>
+                        {{ form.last_name }}
+                    </div>
+                    {% if form.last_name.errors %}
+                        <div class="errorlist">{{ form.last_name.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.role.id_for_label }}" class="required-field">Role</label>
+                    <div class="input-container">
+                        <span class="input-icon">👥</span>
+                        {{ form.role }}
+                    </div>
+                    {% if form.role.errors %}
+                        <div class="errorlist">{{ form.role.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group" id="faculty-code-group" style="display: none;">
+                    <label for="{{ form.faculty_code.id_for_label }}">Faculty Code</label>
+                    <div class="input-container">
+                        <span class="input-icon">🔑</span>
+                        {{ form.faculty_code }}
+                    </div>
+                    {% if form.faculty_code.errors %}
+                        <div class="errorlist">{{ form.faculty_code.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.password1.id_for_label }}" class="required-field">Password</label>
+                    <div class="input-container">
+                        <span class="input-icon">🔒</span>
+                        {{ form.password1 }}
+                    </div>
+                    {% if form.password1.errors %}
+                        <div class="errorlist">{{ form.password1.errors }}</div>
+                    {% endif %}
+                    <div class="password-strength">
+                        <div class="password-strength-bar"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.password2.id_for_label }}" class="required-field">Confirm Password</label>
+                    <div class="input-container">
+                        <span class="input-icon">🔒</span>
+                        {{ form.password2 }}
+                    </div>
+                    {% if form.password2.errors %}
+                        <div class="errorlist">{{ form.password2.errors }}</div>
+                    {% endif %}
+                </div>
+                
+                <button type="submit" class="login-button">Create Account</button>
+            </form>
+            
+            <p class="signup-link">Already have an account? <a href="{% url 'login' %}">Sign In</a></p>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const roleSelect = document.querySelector('#{{ form.role.id_for_label }}');
+    const facultyCodeGroup = document.querySelector('#faculty-code-group');
+    
+    function toggleFacultyCode() {
+        if (roleSelect.value === 'faculty') {
+            facultyCodeGroup.style.display = 'block';
+        } else {
+            facultyCodeGroup.style.display = 'none';
+        }
+    }
+    
+    roleSelect.addEventListener('change', toggleFacultyCode);
+    toggleFacultyCode(); // Initial check
+});
+</script>
+{% endblock %}
+{% endblock %} 

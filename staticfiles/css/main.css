@@ -28,7 +28,7 @@
 }
 
 body {
-    background-image: url('/static/images/apollo.jpg');
+    background-image: url(apollo.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -329,11 +329,6 @@ body {
     z-index: 1;
 }
 
-.input-container input::placeholder {
-    color: var(--primary-light);
-    opacity: 0.7;
-}
-
 .input-container input:focus {
     outline: none;
     border-color: var(--primary);
@@ -507,80 +502,4 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-/* Registration form specific styles */
-#faculty-code-group {
-    transition: all 0.3s ease;
-}
-
-.alert {
-    padding: var(--space-md);
-    margin-bottom: var(--space-md);
-    border-radius: var(--radius-md);
-    font-size: 0.9rem;
-}
-
-.alert-error {
-    background-color: var(--error);
-    color: white;
-}
-
-.alert-success {
-    background-color: var(--success);
-    color: white;
-}
-
-.alert-warning {
-    background-color: var(--warning);
-    color: white;
-}
-
-/* Form validation styles */
-.errorlist {
-    color: var(--error);
-    list-style: none;
-    padding: 0;
-    margin: var(--space-xs) 0;
-    font-size: 0.85rem;
-}
-
-.input-container input.error,
-.input-container select.error {
-    border-color: var(--error);
-}
-
-.input-container input.error:focus,
-.input-container select.error:focus {
-    box-shadow: 0 0 0 4px rgba(211, 47, 47, 0.1);
-}
-
-/* Password strength indicator */
-.password-strength {
-    height: 4px;
-    margin-top: var(--space-xs);
-    border-radius: var(--radius-full);
-    background-color: var(--accent);
-    overflow: hidden;
-}
-
-.password-strength-bar {
-    height: 100%;
-    width: 0;
-    transition: width 0.3s ease, background-color 0.3s ease;
-}
-
-.password-strength-bar.weak {
-    width: 33.33%;
-    background-color: var(--error);
-}
-
-.password-strength-bar.medium {
-    width: 66.66%;
-    background-color: var(--warning);
-}
-
-.password-strength-bar.strong {
-    width: 100%;
-    background-color: var(--success);
 }

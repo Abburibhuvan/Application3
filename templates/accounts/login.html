@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="left-section">
+        <div class="brand">
+            <div class="logo">
+                <img src="{% static 'images/apollologo.png' %}" alt="Apollo University Logo" class="logo-image">
+                <div class="logo-text">
+                    {% for letter in "Apollo University" %}
+                        <span class="letter">{{ letter }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-content">
+            <h1>Welcome to Apollo University</h1>
+            <p>Join our community of learners and unlock your potential through education, innovation, and excellence.</p>
+        </div>
+    </div>
+    
+    <div class="right-section">
+        <div class="login-container">
+            <h2>Member Login</h2>
+            
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="{{ form.email.id_for_label }}" class="required-field">Email Address</label>
+                    <div class="input-container">
+                        <span class="input-icon">📧</span>
+                        {{ form.email }}
+                    </div>
+                    {% if form.email.errors %}
+                        <div class="errorlist">{{ form.email.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.password.id_for_label }}" class="required-field">Password</label>
+                    <div class="input-container">
+                        <span class="input-icon">🔒</span>
+                        {{ form.password }}
+                    </div>
+                    {% if form.password.errors %}
+                        <div class="errorlist">{{ form.password.errors }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-options">
+                    <div class="remember-me">
+                        {{ form.remember_me }}
+                        <label for="{{ form.remember_me.id_for_label }}">Remember me</label>
+                    </div>
+                    <a href="{% url 'password_reset' %}" class="forgot-password">Forgot Password?</a>
+                </div>
+                
+                <button type="submit" class="login-button">Sign In</button>
+            </form>
+            
+            <p class="signup-link">New to Apollo? <a href="{% url 'register' %}">Create Account</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %} 
