@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apollo University - Login</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .required-field::after {
+            content: " *";
+            color: #D32F2F;
+        }
+
+        .faculty-only {
+            display: none;
+        }
+
+        input[name="role"][value="faculty"]:checked ~ .faculty-only {
+            display: block;
+        }
+
+        .role-options {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .role-option {
+            flex: 1;
+        }
+
+        .role-option input[type="radio"] {
+            display: none;
+        }
+
+        .role-option label {
+            display: block;
+            padding: 16px;
+            text-align: center;
+            border: 2px solid #D7CCC8;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .role-option input[type="radio"]:checked + label {
+            background: linear-gradient(45deg, #2C1810, #5D4037);
+            color: white;
+            border-color: #5D4037;
+        }
+
+        .role-option label:hover {
+            border-color: #8D6E63;
+            transform: translateY(-2px);
+        }
+        input::placeholder {
+            color: #999;
+            opacity: 1;
+        }
+
+        input:-ms-input-placeholder {
+            color: #999;
+        }
+
+        input::-ms-input-placeholder {
+            color: #999;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .forgot-password {
+            color: #5D4037;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-password:hover {
+            color: #2C1810;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+            <div class="brand">
+                <div class="logo">
+                    <img src="apollologo.png" alt="Apollo University Logo" class="logo-image">
+                    <div class="logo-text">
+                        <span class="letter">A</span>
+                        <span class="letter">p</span>
+                        <span class="letter">o</span>
+                        <span class="letter">l</span>
+                        <span class="letter">l</span>
+                        <span class="letter">o</span>
+                        <span class="letter">&nbsp;</span>
+                        <span class="letter">U</span>
+                        <span class="letter">n</span>
+                        <span class="letter">i</span>
+                        <span class="letter">v</span>
+                        <span class="letter">e</span>
+                        <span class="letter">r</span>
+                        <span class="letter">s</span>
+                        <span class="letter">i</span>
+                        <span class="letter">t</span>
+                        <span class="letter">y</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-content">
+                <h1>Welcome to Apollo University</h1>
+                <p>Join our community of learners and unlock your potential through education, innovation, and excellence.</p>
+            </div>
+        </div>
+        
+        <div class="right-section">
+            <div class="login-container">
+                <h2>Member Login</h2>
+                
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="email" class="required-field">Email Address</label>
+                        <div class="input-container">
+                            <span class="input-icon">📧</span>
+                            <input type="email" id="email" name="email" placeholder="your.email@apollo.edu.in" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="required-field">Select Your Role</label>
+                        <div class="role-options">
+                            <div class="role-option">
+                                <input type="radio" id="role-student" name="role" value="student" required>
+                                <label for="role-student">Student</label>
+                            </div>
+                            <div class="role-option">
+                                <input type="radio" id="role-faculty" name="role" value="faculty" required>
+                                <label for="role-faculty">Faculty</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group faculty-only">
+                        <label for="facultyCode" class="required-field">Faculty Code</label>
+                        <div class="input-container">
+                            <span class="input-icon">🔑</span>
+                            <input type="password" id="facultyCode" name="facultyCode" 
+                                   placeholder="Enter faculty verification code"
+                                   pattern="[A-Za-z0-9]{6,}"
+                                   title="Faculty code must be at least 6 characters long">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password" class="required-field">Password</label>
+                        <div class="input-container">
+                            <span class="input-icon">🔒</span>
+                            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-options">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember" name="remember" checked>
+                            <label for="remember">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    
+                    <button type="submit" class="login-button">Sign In</button>
+                </form>
+                
+                <p class="signup-link">New to Apollo? <a href="register.html">Create Account</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
